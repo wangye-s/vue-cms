@@ -49,7 +49,7 @@
       //获取图文详情内容
       getPhotoContent() {
         this.$http
-          .get('http://127.0.0.1:5000/photoContent?id=' + this.id)
+          .get('photoContent?id=' + this.id)
           .then(function (result) {
             if (result.body.status === 200) {
               this.photoInfo = result.body.messages[0]
@@ -62,11 +62,11 @@
       //获取缩略图
       getThumbImg() {
         this.$http
-          .get('http://127.0.0.1:5000/getthumimg?id='+ this.id)
+          .get('getthumimg?id='+ this.id)
           .then(function (result) {
             if (result.body.status === 200) {
               this.list = result.body.messages
-              console.log(this.list)
+              // console.log(this.list)
               this.list.forEach(item => {
                 item.w = 600;  //设置以大图浏览时的宽度
                 item.h = 400;  //设置以大图浏览时的高度
@@ -79,6 +79,7 @@
         })
       },
 
+      /*
       //缩略图处理
       // 即将关闭的时候，调用这个处理函数
       closeHandler() {
@@ -88,6 +89,8 @@
       destroyHandler() {
         console.log('destroyHandler')
       }
+
+       */
 
     },
     components: {

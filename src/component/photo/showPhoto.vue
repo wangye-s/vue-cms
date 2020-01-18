@@ -52,7 +52,7 @@
       //获取图片分类
       getNav(){
         this.$http
-          .get('http://127.0.0.1:5000/photocates')
+          .get('photocates')
           .then(function (result) {
           if (result.body.status === 200) {
             this.cates = result.body.messages
@@ -68,7 +68,7 @@
       getImgInfo(typeNum) {
         if (typeNum === 0) {
           this.$http
-            .get('http://127.0.0.1:5000/photoList')
+            .get('photoList')
             .then(function (result) {
               // console.log(result)
               if (result.body.status === 200) {
@@ -79,7 +79,7 @@
             })
         } else {
           this.$http
-            .get('http://127.0.0.1:5000/photoList?typeNum=' + typeNum)
+            .get('photoList?typeNum=' + typeNum)
             .then(function (result) {
               // console.log(result)
               if (result.body.status === 200) {

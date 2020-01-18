@@ -36,7 +36,7 @@
     methods: {
       getNewsInfo() {
         // console.log(this.$route.params)
-        this.$http.post('http://127.0.0.1:5000/newsinfo',{ id: this.id }, { emulateJSON: true } ).then((result) => {
+        this.$http.post('newsinfo',{ id: this.id }, { emulateJSON: true } ).then((result) => {
           if (result.body.status === 200) {
             this.newsinfo = result.body.messages
           } else {

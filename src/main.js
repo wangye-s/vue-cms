@@ -11,16 +11,16 @@ Vue.use(VueRouter)
 //导入格式化时间的插件
 import moment from 'moment'
 //定义一个全局的时间过滤器
-Vue.filter('dataFormat', function (dataStr, pattern = "YYYY-MM-DD HH:mm:ss") {
+Vue.filter('dataFormat', function(dataStr, pattern = 'YYYY-MM-DD HH:mm:ss') {
   return moment(dataStr).format(pattern)
 })
 
 //2.2 安装vue-resource
 Vue.use(vueResource)
 // 设置请求的根路径
-// Vue.http.options.root = 'http://127.0.0.1:5000';
+Vue.http.options.root = 'http://www.yjste.cn:5000'
 // 全局设置 post 时候表单数据格式组织形式   application/x-www-form-urlencoded
-Vue.http.options.emulateJSON = true;
+Vue.http.options.emulateJSON = true
 
 // 按需导入 Mint-UI 中的组件
 // import { Header, Swipe, SwipeItem, Button} from 'mint-ui'
@@ -48,5 +48,5 @@ import app from './App.vue'
 let vm = new Vue({
   el: '#app',
   render: c => c(app),
-  router  //1.4 挂载路由
+  router //1.4 挂载路由
 })

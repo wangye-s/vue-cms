@@ -32,7 +32,7 @@
     },
     methods: {
       getNewsList() {
-        this.$http.get('http://127.0.0.1:5000/newslist').then(function (result) {
+        this.$http.get('newslist').then(function (result) {
           // console.log(result)
           if (result.body.status === 200) {
             this.newsList = result.body.messages

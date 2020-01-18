@@ -9,11 +9,15 @@ import newslistComponent from './component/news/newslist.vue'
 import newsInfoComponent from './component/news/newsinfo.vue'
 import showPhotoComponent from './component/photo/showPhoto.vue'
 import photoInfoComponent from './component/photo/photoInfo.vue'
-
+import shopListComponent from './component/shop/shopList.vue'
+import shopInfoComponent from './component/shop/shopInfo.vue'
+import shopShowComponent from './component/shop/shopShow.vue'
+import shopCriComponent from './component/shop/shopCri.vue'
 
 // 3. 创建路由对象
 var router = new VueRouter({
-  routes: [  //配置路由规则
+  routes: [
+    //配置路由规则
     { path: '/', redirect: '/home' },
     { path: '/home', component: homeComponent },
     { path: '/member', component: memberComponent },
@@ -22,9 +26,21 @@ var router = new VueRouter({
     { path: '/home/newslist', component: newslistComponent },
     { path: '/home/newsinfo/:id', component: newsInfoComponent },
     { path: '/home/photo', component: showPhotoComponent },
-    { path: '/home/photoInfo/:id', component: photoInfoComponent }
+    { path: '/home/photoInfo/:id', component: photoInfoComponent },
+    { path: '/home/shop', component: shopListComponent },
+    {
+      path: '/home/shopInfo/:id',
+      component: shopInfoComponent,
+      name: 'shopInfo'
+    },
+    {
+      path: '/home/shopShow/:id',
+      component: shopShowComponent,
+      name: 'shopShow'
+    },
+    { path: '/home/shopCri/:id', component: shopCriComponent, name: 'shopCri' }
   ],
-  linkActiveClass: 'mui-active'  //覆盖默认的设置路由高亮的类
+  linkActiveClass: 'mui-active' //覆盖默认的设置路由高亮的类
 })
 
 // 把路由对象暴露出去
