@@ -5,9 +5,9 @@
       id="test"
       class="mui-input-numbox"
       type="number"
-      value="1"
-      @change="countChanged"
+      :value="initCount"
       ref="numbox"
+      @change="countChange()"
     />
     <button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
   </div>
@@ -20,20 +20,16 @@ export default {
     mui('.mui-numbox').numbox()
   },
   methods: {
-    countChanged() {
-      //每当文本框的值发生变化时, 通过时间调用将 文本框的值 发送给父组件
-      this.$emit('getCount', parseInt(this.$refs.numbox.value))
+    //当 numbox 中的数据发生改变时
+    countChange() {
+      this.$store.commit('updateCarCount', {
+        id: this.shopid,
+        count: this.$refs.numbox.value
+      })
     }
   },
-  props: ['max'],
-  watch: {
-    max: function(newValue, oldValue) {
-      //通过mui-numbox 的js代码控制num框的最大值
-      mui('.mui-numbox')
-        .numbox()
-        .setOption('max', newValue)
-    }
-  }
+  //父组件向子组件传值
+  props: ['initCount', 'shopid']
 }
 </script>
 

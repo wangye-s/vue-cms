@@ -26,12 +26,12 @@
           <p>
             <span>
               购买数量:
-              <numbox></numbox>
+              <numbox @getCount="getSelectCount" :max="shopInfo.stock_quantify"></numbox>
             </span>
           </p>
 
           <mt-button type="primary" size="small">立即购买</mt-button>
-          <mt-button type="danger" size="small" @click="getBall()">加入购物车</mt-button>
+          <mt-button type="danger" size="small" @click="getToCar()">加入购物车</mt-button>
         </div>
       </div>
     </div>
@@ -65,7 +65,8 @@ export default {
       id: this.$route.params.id,
       swipList: [],
       shopInfo: [],
-      ballFlag: false
+      ballFlag: false,
+      selectCont: 1
     }
   },
   created() {
@@ -106,8 +107,18 @@ export default {
     },
 
     //小球
-    getBall() {
+    getToCar() {
       this.ballFlag = !this.ballFlag
+
+      //将页面的信息构建成一个对象, {"id": "", "buyCount": "", "shopPrice": "", "seleFlag": ""} 存放到vuex中 的state 中
+      let buyInfo = {
+        id: this.id,
+        buyCount: this.selectCont,
+        shopPrice: this.shopInfo.sell_price,
+        seleFlag: true
+      }
+      //调用store 中的 motations 中的方法将 buyInfo 加入购物车
+      this.$store.commit('addToCar', buyInfo)
     },
 
     //购物车小球动画
@@ -135,6 +146,10 @@ export default {
     },
     afterEnter(el) {
       this.ballFlag = !this.ballFlag
+    },
+    //获取子组件传递的商品数量值
+    getSelectCount(count) {
+      this.selectCont = count
     }
   },
   components: {
